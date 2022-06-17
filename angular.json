@@ -24,11 +24,21 @@
               "src/favicon.256x256.png",
               "src/favicon.512x512.png"
             ],
+            "extractCss": true,
             "styles": [
               "node_modules/prismjs/themes/prism-okaidia.css",
               "src/styles.css",
               "src/markdown.css",
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              {
+                "input": "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+                "bundleName": "theme1",
+                "inject": true
+              },
+              {
+                "input": "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+                "bundleName": "theme2",
+                "inject": false
+              }
             ],
             "scripts": [
               "node_modules/marked/lib/marked.js",
