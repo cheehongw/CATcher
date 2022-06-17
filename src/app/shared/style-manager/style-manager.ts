@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatSlideToggleChange } from '@angular/material';
-import { SiteTheme, ThemeStorage } from './theme-storage/theme-storage';
+import { ThemeStorage } from './theme-storage/theme-storage';
 
 /**
  * Class for managing stylesheets. Stylesheets are loaded into named slots so that they can be
@@ -10,58 +9,23 @@ import { SiteTheme, ThemeStorage } from './theme-storage/theme-storage';
   providedIn: 'root'
 })
 export class StyleManager {
-  currentTheme: SiteTheme | undefined;
-
-  themes = [
-    {
-      primary: '#3F51B5',
-      accent: '#E91E63',
-      href: 'indigo-pink.css',
-      isDark: false,
-      isDefault: true
-    },
-    {
-      primary: '#E91E63',
-      accent: '#607D8B',
-      href: 'pink-bluegrey.css',
-      isDark: true
-    }
-  ];
+  currentTheme: string | undefined;
 
   constructor(private _themeStorage: ThemeStorage | null) {
     const currentTheme = this._themeStorage.getStoredTheme();
-    if (currentTheme) {
+    if (currentTheme !== null) {
       this.installTheme(currentTheme);
     } else {
-      this.themes.find((theme) => {
-        if (theme.isDefault === true) {
-          this.installTheme(theme);
-        }
-      });
+      this.installTheme('theme1.css');
     }
   }
 
-  installTheme(theme: SiteTheme) {
-    this.currentTheme = this._getCurrentThemeFromHref(theme.href);
-
-    if (theme.isDefault) {
-      this.removeStyle('theme');
-    } else {
-      this.setStyle('theme', `assets/themes/${theme.href}`);
-    }
-
-    if (this.currentTheme) {
-      this._themeStorage.storeTheme(this.currentTheme);
-    }
-  }
-
-  onToggle(event: MatSlideToggleChange) {
-    const isDark: boolean = event.checked;
-    if (isDark) {
-      this.installTheme(this.themes[1]);
-    } else {
-      this.installTheme(this.themes[0]);
-    }
+  installTheme(cssFile: string) {
+    const headEl = document.getElementsByTagName('head')[0];
+    const newLinkEl = document.createElement('link');
+    newLinkEl.rel = 'stylesheet';
+    newLinkEl.href = cssFile;
+    headEl.appendChild(newLinkEl);
   }
 
   /**
@@ -79,10 +43,6 @@ export class StyleManager {
     if (existingLinkElement) {
       document.head.removeChild(existingLinkElement);
     }
-  }
-
-  private _getCurrentThemeFromHref(href: string): SiteTheme {
-    return this.themes.find((theme) => theme.href === href);
   }
 }
 

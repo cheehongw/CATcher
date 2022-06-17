@@ -1,22 +1,14 @@
 import { EventEmitter, Injectable } from '@angular/core';
 
-export interface SiteTheme {
-  href: string;
-  accent: string;
-  primary: string;
-  isDark?: boolean;
-  isDefault?: boolean;
-}
-
 @Injectable()
 export class ThemeStorage {
   static storageKey = 'theme-storage-current';
 
-  public onThemeUpdate: EventEmitter<SiteTheme> = new EventEmitter<SiteTheme>();
+  public onThemeUpdate: EventEmitter<string> = new EventEmitter<string>();
 
-  public storeTheme(theme: SiteTheme) {
+  public storeTheme(theme: string) {
     try {
-      window.localStorage[ThemeStorage.storageKey] = JSON.stringify(theme);
+      window.localStorage[ThemeStorage.storageKey] = theme;
     } catch (e) {
       console.log('unable to store theme');
       console.log(e);
@@ -25,9 +17,9 @@ export class ThemeStorage {
     this.onThemeUpdate.emit(theme);
   }
 
-  public getStoredTheme(): SiteTheme | null {
+  public getStoredTheme(): string | null {
     try {
-      return JSON.parse(window.localStorage[ThemeStorage.storageKey] || null);
+      return window.localStorage[ThemeStorage.storageKey] || null;
     } catch (e) {
       return null;
     }
