@@ -38,6 +38,8 @@ import { LabelDefinitionPopupComponent } from './shared/label-definition-popup/l
 import { HeaderComponent } from './shared/layout';
 import { markedOptionsFactory } from './shared/lib/marked';
 import { SharedModule } from './shared/shared.module';
+import { StyleManager } from './shared/style-manager/style-manager';
+import { ThemeStorage } from './shared/style-manager/theme-storage/theme-storage';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, UserConfirmationComponent, LabelDefinitionPopupComponent, SessionFixConfirmationComponent],
@@ -92,6 +94,15 @@ import { SharedModule } from './shared/shared.module';
     {
       provide: ErrorHandler,
       useClass: ErrorHandlingService
+    },
+    {
+      provide: StyleManager,
+      useClass: StyleManager,
+      deps: [ThemeStorage]
+    },
+    {
+      provide: ThemeStorage,
+      useClass: ThemeStorage
     }
   ],
   bootstrap: [AppComponent],
