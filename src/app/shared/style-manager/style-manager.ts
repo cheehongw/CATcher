@@ -9,11 +9,11 @@ import { ThemeStorage } from './theme-storage/theme-storage';
   providedIn: 'root'
 })
 export class StyleManager {
-  isDark: boolean = false;
+  isDark = false;
 
   constructor(private _themeStorage: ThemeStorage | null) {
     const currentTheme = this._themeStorage.getStoredTheme();
-    if (currentTheme == 'dark-mode') {
+    if (currentTheme === 'dark-mode') {
       this.setDarkTheme();
       this.isDark = true;
     }
@@ -22,12 +22,12 @@ export class StyleManager {
   setDarkTheme() {
     document.body.classList.toggle('dark-mode');
     this._themeStorage.storeTheme('dark-mode');
-    this.isDark == true;
+    this.isDark = true;
   }
 
   setDefaultTheme() {
     document.body.classList.remove('dark-mode');
     this._themeStorage.clearStorage();
-    this.isDark == false;
+    this.isDark = false;
   }
 }

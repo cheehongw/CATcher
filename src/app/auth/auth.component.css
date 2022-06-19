@@ -18,6 +18,10 @@
   font-size: 30px;
 }
 
+.login-title ::ng-deep .dark-mode {
+  font-size: 30px;
+}
+
 .login-card {
   text-align: center;
   padding: 40px 70px 50px;
