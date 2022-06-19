@@ -63,6 +63,8 @@
     <mat-spinner class="white-spinner" [diameter]="20"></mat-spinner>
   </div>
 
+  <mat-slide-toggle (change)="onToggle($event)" [checked]="styleManager.isDark"></mat-slide-toggle>
+
   <button *ngIf="auth.isAuthenticated()" mat-button matTooltip="Log out" (click)="openLogOutDialog(); $event.stopPropagation()">
     ({{ userService.currentUser.loginId }})
     <mat-icon style="margin-left: 2px">exit_to_app</mat-icon>

@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MatSlideToggleChange } from '@angular/material';
 import { Router, RoutesRecognized } from '@angular/router';
 import { filter, pairwise } from 'rxjs/operators';
 import { AppConfig } from '../../../environments/environment';
@@ -15,6 +16,7 @@ import { IssueService } from '../../core/services/issue.service';
 import { LoggingService } from '../../core/services/logging.service';
 import { PhaseDescription, PhaseService } from '../../core/services/phase.service';
 import { UserService } from '../../core/services/user.service';
+import { StyleManager } from '../style-manager/style-manager';
 
 const ISSUE_TRACKER_URL = 'https://github.com/CATcher-org/CATcher/issues';
 
@@ -47,7 +49,8 @@ export class HeaderComponent implements OnInit {
     private errorHandlingService: ErrorHandlingService,
     private githubService: GithubService,
     private electronService: ElectronService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private styleManager: StyleManager
   ) {
     router.events
       .pipe(
@@ -196,5 +199,14 @@ export class HeaderComponent implements OnInit {
 
   exportLogFile() {
     this.loggingService.exportLogFile();
+  }
+
+  onToggle(event: MatSlideToggleChange) {
+    const isDark: boolean = event.checked;
+    if (isDark) {
+      this.styleManager.setDarkTheme();
+    } else {
+      this.styleManager.setDefaultTheme();
+    }
   }
 }
