@@ -2,8 +2,15 @@
   width: 100%;
 }
 
-.sign-in-button {
+::ng-deep .sign-in-button {
   background: #f7fcfe;
+  line-height: 45px;
+  border: 1px solid currentColor;
+  width: 100%;
+}
+
+::ng-deep .dark-mode .sign-in-button {
+  background: #313b3b;
   line-height: 45px;
   border: 1px solid currentColor;
   width: 100%;
