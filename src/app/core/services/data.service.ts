@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { DataFile } from '../models/data-file.model';
+import { map } from 'rxjs/operators';
 import { Team } from '../models/team.model';
 import { User, UserRole } from '../models/user.model';
 import { Admins } from '../models/users/admins.model';

@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorHandler, Injectable } from '@angular/core';
+import { Injectable, ErrorHandler } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RequestError } from '@octokit/request-error';
 import { FormErrorComponent } from '../../shared/error-toasters/form-error/form-error.component';
