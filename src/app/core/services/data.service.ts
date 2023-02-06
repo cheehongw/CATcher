@@ -10,8 +10,8 @@ import { Roles } from '../models/users/roles.model';
 import { Students } from '../models/users/students.model';
 import { TabulatedUserData } from '../models/users/tabulated-user-data.model';
 import { Teams } from '../models/users/teams.model';
-import { Tutors } from '../models/users/tutors.model';
 import { GithubService } from './github.service';
+import { Tutors } from '../models/users/tutors.model';
 
 @Injectable({
   providedIn: 'root'
