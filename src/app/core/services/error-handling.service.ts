@@ -3,8 +3,8 @@ import { Injectable, ErrorHandler } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RequestError } from '@octokit/request-error';
 import { FormErrorComponent } from '../../shared/error-toasters/form-error/form-error.component';
-import { GeneralMessageErrorComponent } from '../../shared/error-toasters/general-message-error/general-message-error.component';
 import { LoggingService } from './logging.service';
+import { GeneralMessageErrorComponent } from '../../shared/error-toasters/general-message-error/general-message-error.component';
 
 export const ERRORCODE_NOT_FOUND = 404;
 
