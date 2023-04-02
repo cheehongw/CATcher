@@ -19,7 +19,9 @@
     "lint:fix": "ng lint --fix",
     "codegen:gql": "graphql-codegen --config codegen.yml",
     "codegen:gql-watch": "graphql-codegen --config -w codegen.yml",
-    "pretty-quick": "pretty-quick"
+    "pretty-quick": "pretty-quick",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "husky": {
     "hooks": {
@@ -69,6 +71,7 @@
     "@angular/cli": "^10.2.4",
     "@angular/compiler-cli": "^10.2.5",
     "@angular/language-service": "^10.2.5",
+    "@cypress/schematic": "^1.6.0",
     "@graphql-codegen/cli": "^2.6.4",
     "@graphql-codegen/typescript": "1.17.7",
     "@graphql-codegen/typescript-document-nodes": "1.17.7",
@@ -102,6 +105,7 @@
     "tslint-config-prettier": "^1.18.0",
     "typescript": "4.0.8",
     "wait-on": "3.3.0",
-    "webdriver-manager": "12.1.7"
+    "webdriver-manager": "12.1.7",
+    "cypress": "latest"
   }
 }
