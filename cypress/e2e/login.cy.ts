@@ -7,11 +7,11 @@ const loginPage = {
   },
 
   getTitle: () => {
-    return cy.get('app-layout-header');
+    return cy.get('.app-root').get('.app-layout-header');
   },
 
   getConfirmationScreenTitle: () => {
-    return cy.get('.login-title');
+    return cy.get('.login-title', { timeout: 12_000 });
   },
 
   login: () => {
@@ -20,15 +20,16 @@ const loginPage = {
 
   confirmUser: () => {
     // cy.wait(ExpectedConditions.presenceOf(cy.get('.sign-in-button')))
-    const confirm = cy.get('.sign-in-button');
+    const confirm = cy.get('app-auth-confirm-login', { timeout: 12_000 }).should('be.visible');
+    confirm.get('button').should('contain', 'Continue as');
     confirm.click();
   },
 
   selectSession: () => {
-    const profiles = cy.get('app-profiles');
-
+    const profiles = cy.get('.mat-select-placeholder');
     profiles.click();
-    const options = cy.get('.mat-select-arrow').eq(1);
+
+    const options = cy.get('.mat-option').eq(1);
     options.click();
 
     const button = cy.get('.sign-in-button');
@@ -52,7 +53,8 @@ describe("CATcher's Login Page", () => {
 
   it('allows users to authenticate themselves', async () => {
     loginPage.login();
-    loginPage.getConfirmationScreenTitle().should('equal', 'Confirm Login Account');
+    loginPage.getConfirmationScreenTitle().should('contain', 'Confirm Login Account');
+    // cy.pause();
     loginPage.confirmUser();
   });
 });
