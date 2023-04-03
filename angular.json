@@ -155,7 +155,7 @@
           "options": {
             "devServerTarget": "CATcher:serve",
             "watch": true,
-            "headless": false
+            "headless": true
           },
           "configurations": {
             "production": {
